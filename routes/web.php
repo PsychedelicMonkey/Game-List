@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -37,3 +40,15 @@ Route::get('register', [RegisterController::class, 'create'])
 
 Route::post('register', [RegisterController::class, 'store'])
             ->middleware('guest');
+
+Route::get('email/verify', EmailVerificationPromptController::class)
+            ->middleware('auth')
+            ->name('verification.notice');
+
+Route::get('email/verify/{id}/{hash}', VerifyEmailController::class)
+            ->middleware(['auth', 'signed', 'throttle:6,1'])
+            ->name('verification.verify');
+
+Route::post('/email/verification-notification', EmailVerificationNotificationController::class)
+            ->middleware(['auth', 'throttle:6,1'])
+            ->name('verification.send');
