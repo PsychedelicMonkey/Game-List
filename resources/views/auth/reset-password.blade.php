@@ -1,14 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="text-3xl font-semibold underline">Log In</h1>
+    <h1 class="text-3xl font-semibold underline">Reset your password</h1>
 
     @if(session()->has('status'))
         <p>{{ session('status') }}</p>
     @endif
 
-    <form action="{{ url('login') }}" method="post">
+    <form action="{{ route('password.update') }}" method="post">
         @csrf
+
+        <input type="hidden" name="token" value="{{ $token }}" />
 
         <div>
             <label for="email">Email Address</label>
@@ -28,8 +30,15 @@
             @enderror
         </div>
 
-        <button type="submit">Log In</button>
-    </form>
+        <div>
+            <label for="password_confirmation">Confirm Password</label>
+            <input type="password" name="password_confirmation" id="password_confirmation" />
 
-    <a href="{{ route('password.request') }}">Forgot your password?</a>
+            @error('password_confirmation')
+            <p>{{ $message }}</p>
+            @enderror
+        </div>
+
+        <button type="submit">Send Email</button>
+    </form>
 @endsection
