@@ -46,7 +46,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'is_admin' => 'boolean',
     ];
 
-    public function isAdministrator(): bool
+    public function isAdministrator(): bool|null
     {
         return $this->is_admin;
     }
