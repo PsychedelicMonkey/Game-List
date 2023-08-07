@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,5 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+
+Route::resource('game-list', GameController::class)->parameters([
+    'game-list' => 'game',
+])->except('show');
+
+Route::resource('game-list', GameController::class)->parameters([
+    'game-list' => 'game:slug',
+])->only('show');
 
 require __DIR__ . '/auth.php';
