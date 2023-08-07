@@ -12,6 +12,11 @@ use Illuminate\View\View;
 
 class GameController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Game::class, 'game');
+    }
+
     /**
      * Display a listing of the resource.
      */

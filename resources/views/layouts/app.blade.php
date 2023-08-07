@@ -15,23 +15,30 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="{{ url('/') }}">Home</a>
+    <div class="container mx-auto">
+        <header>
+            <nav>
+                <a href="{{ url('/') }}">Home</a>
+                <a href="{{ route('game-list.index') }}">Game List</a>
 
-            @auth
-                <form action="{{ route('logout') }}" method="post">
-                    @csrf
+                @can('create', \App\Models\Game::class)
+                    <a href="{{ route('game-list.create') }}">Create Game</a>
+                @endcan
 
-                    <button type="submit">Log Out</button>
-                </form>
-            @else
-                <a href="{{ route('login') }}">Log In</a>
-                <a href="{{ route('register') }}">Register</a>
-            @endauth
-        </nav>
-    </header>
+                @auth
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
 
-    <main>@yield('content')</main>
+                        <button type="submit">Log Out</button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}">Log In</a>
+                    <a href="{{ route('register') }}">Register</a>
+                @endauth
+            </nav>
+        </header>
+
+        <main>@yield('content')</main>
+    </div>
 </body>
 </html>

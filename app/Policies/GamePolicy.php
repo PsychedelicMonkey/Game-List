@@ -11,17 +11,17 @@ class GamePolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(?User $user): bool
     {
-        //
+        return true;
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Game $game): bool
+    public function view(?User $user, Game $game): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class GamePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->isAdministrator();
     }
 
     /**
@@ -37,7 +37,7 @@ class GamePolicy
      */
     public function update(User $user, Game $game): bool
     {
-        //
+        return $user->isAdministrator();
     }
 
     /**
@@ -45,7 +45,7 @@ class GamePolicy
      */
     public function delete(User $user, Game $game): bool
     {
-        //
+        return $user->isAdministrator();
     }
 
     /**
@@ -53,7 +53,7 @@ class GamePolicy
      */
     public function restore(User $user, Game $game): bool
     {
-        //
+        return $user->isAdministrator();
     }
 
     /**
@@ -61,6 +61,6 @@ class GamePolicy
      */
     public function forceDelete(User $user, Game $game): bool
     {
-        //
+        return $user->isAdministrator();
     }
 }
