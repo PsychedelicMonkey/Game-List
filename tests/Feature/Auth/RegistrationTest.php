@@ -39,6 +39,6 @@ class RegistrationTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $this->assertNull($user->isAdministrator());
+        $this->assertFalse($user->isAdministrator());
     }
 }
