@@ -6,8 +6,11 @@ use App\Models\Developer;
 use App\Models\Game;
 use App\Http\Requests\StoreGameRequest;
 use App\Http\Requests\UpdateGameRequest;
+use App\Models\GameImage;
 use App\Models\Genre;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
 
 class GameController extends Controller
@@ -42,6 +45,15 @@ class GameController extends Controller
     {
         $request->validated();
 
+        $file = $request->file('image');
+        $size = getimagesize($file);
+
+        if (!Storage::directoryExists('public/photo')) {
+            Storage::disk('public')->makeDirectory('photo');
+        }
+
+        $image = Storage::disk('public')->put('photo', $file);
+
         $developer = Developer::query()->firstOrCreate([
             'name' => $request->developer,
         ]);
@@ -56,6 +68,19 @@ class GameController extends Controller
             'description' => $request->description,
             'developer_id' => $developer->id,
             'genre_id' => $genre->id,
+        ]);
+
+        GameImage::query()->create([
+            'image' => array(
+                'url' => URL::to(Storage::url($image)),
+                'width' => $size[0],
+                'height' => $size[1],
+            ),
+            'original_name' => $file->getClientOriginalName(),
+            'mime_type' => $file->getClientMimeType(),
+            'file_hash' => hash_file('sha1', $file),
+            'size' => $file->getSize(),
+            'game_id' => $game->id,
         ]);
 
         return redirect()->route('game-list.index');

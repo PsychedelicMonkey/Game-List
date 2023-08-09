@@ -3,7 +3,7 @@
 @section('content')
     <h1 class="text-3xl font-semibold underline">Create Game</h1>
 
-    <form action="{{ route('game-list.store') }}" method="post">
+    <form action="{{ route('game-list.store') }}" method="post" enctype="multipart/form-data">
         @csrf
 
         <div>
@@ -47,6 +47,15 @@
             <textarea name="description" id="description" cols="30" rows="10">{{ old('description') }}</textarea>
 
             @error('description')
+            <p>{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div>
+            <label for="image">Image</label>
+            <input type="file" name="image" id="image" />
+
+            @error('image')
             <p>{{ $message }}</p>
             @enderror
         </div>

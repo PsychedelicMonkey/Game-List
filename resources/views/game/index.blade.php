@@ -7,6 +7,7 @@
         <div>
             @foreach($games as $game)
                 <div>
+                    <img src="{{ $game->images()->first()->image['url'] }}" alt="" />
                     <h3>{{ $game->title }}</h3>
                     <a href="{{ route('game-list.show', $game->slug) }}">Read</a>
                 </div>
