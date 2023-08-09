@@ -1,24 +1,21 @@
-@extends('layouts.app')
+@extends('layouts.guest', ['title' => 'Forgot Your Password'])
 
 @section('content')
-    <h1 class="text-3xl font-semibold underline">Forgot your password?</h1>
+    <div class="mb-10">
+        <h1 class="font-bold text-3xl text-white text-center drop-shadow-md">
+            Forgot Your Password?
+        </h1>
+    </div>
 
-    @if(session()->has('status'))
-        <p>{{ session('status') }}</p>
-    @endif
+    <x-form :route="route('password.email')">
+        <x-input type="email" id="email" label="Email Address" />
 
-    <form action="{{ route('password.email') }}" method="post">
-        @csrf
+        <x-button label="Send Reset Link" />
+    </x-form>
 
-        <div>
-            <label for="email">Email Address</label>
-            <input type="email" name="email" id="email" value="{{ old('email') }}" />
-
-            @error('email')
-            <p>{{ $message }}</p>
-            @enderror
-        </div>
-
-        <button type="submit">Send Email</button>
-    </form>
+    <div class="text-center mt-4">
+        <a href="{{ route('login') }}" class="text-white font-semibold no-underline hover:underline">
+            Remember your password? Login
+        </a>
+    </div>
 @endsection

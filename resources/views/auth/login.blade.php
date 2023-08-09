@@ -1,35 +1,36 @@
-@extends('layouts.app')
+@extends('layouts.guest', ['title' => 'Login'])
 
 @section('content')
-    <h1 class="text-3xl font-semibold underline">Log In</h1>
+    <div class="mb-10">
+        <h1 class="font-bold text-3xl text-white text-center drop-shadow-md">
+            Login to Your Account
+        </h1>
+    </div>
 
-    @if(session()->has('status'))
-        <p>{{ session('status') }}</p>
-    @endif
+    <x-form :route="route('login')">
+        <div class="mb-4">
+            <x-input type="email" id="email" label="Email Address" :value="old('email')" />
 
-    <form action="{{ url('login') }}" method="post">
-        @csrf
+            <x-input type="password" id="password" label="Password" />
 
-        <div>
-            <label for="email">Email Address</label>
-            <input type="email" name="email" id="email" value="{{ old('email') }}" />
+            <div class="flex justify-between items-end">
+                <div>
+                    <input type="checkbox" name="remember" id="remember" class="focus:ring-0 focus:ring-offset-0" />
+                    <label for="remember" class="text-white font-semibold ml-1">Remember Me</label>
+                </div>
 
-            @error('email')
-            <p>{{ $message }}</p>
-            @enderror
+                <a href="{{ route('password.request') }}" class="text-white font-semibold drop-shadow-lg no-underline hover:underline">
+                    Forgot Password?
+                </a>
+            </div>
         </div>
 
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" />
+        <x-button label="Login" />
+    </x-form>
 
-            @error('password')
-            <p>{{ $message }}</p>
-            @enderror
-        </div>
-
-        <button type="submit">Log In</button>
-    </form>
-
-    <a href="{{ route('password.request') }}">Forgot your password?</a>
+    <div class="text-center mt-4">
+        <a href="{{ route('register') }}" class="text-white font-semibold no-underline hover:underline">
+            Don't have an account? Sign Up
+        </a>
+    </div>
 @endsection

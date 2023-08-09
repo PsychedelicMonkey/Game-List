@@ -1,47 +1,27 @@
-@extends('layouts.app')
+@extends('layouts.guest', ['title' => 'Register'])
 
 @section('content')
-    <h1 class="text-3xl font-semibold underline">Register</h1>
+    <div class="mb-10">
+        <h1 class="font-bold text-3xl text-white text-center drop-shadow-md">
+            Register Your Account
+        </h1>
+    </div>
 
-    <form action="{{ url('register') }}" method="post">
-        @csrf
+    <x-form :route="route('register')">
+        <x-input id="name" label="Name" />
 
-        <div>
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" value="{{ old('name') }}" />
+        <x-input type="email" id="email" label="Email Address" />
 
-            @error('name')
-            <p>{{ $message }}</p>
-            @enderror
-        </div>
+        <x-input type="password" id="password" label="Password" />
 
-        <div>
-            <label for="email">Email Address</label>
-            <input type="email" name="email" id="email" value="{{ old('email') }}" />
+        <x-input type="password" id="password_confirmation" label="Confirm Password" />
 
-            @error('email')
-            <p>{{ $message }}</p>
-            @enderror
-        </div>
+        <x-button label="Register" />
+    </x-form>
 
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" />
-
-            @error('password')
-            <p>{{ $message }}</p>
-            @enderror
-        </div>
-
-        <div>
-            <label for="password_confirmation">Confirm Password</label>
-            <input type="password" name="password_confirmation" id="password_confirmation" />
-
-            @error('password_confirmation')
-            <p>{{ $message }}</p>
-            @enderror
-        </div>
-
-        <button type="submit">Register</button>
-    </form>
+    <div class="text-center mt-4">
+        <a href="{{ route('login') }}" class="text-white font-semibold no-underline hover:underline">
+            Already have an account? Login
+        </a>
+    </div>
 @endsection
