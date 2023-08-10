@@ -10,8 +10,8 @@ use App\Http\Requests\UpdateGameRequest;
 use App\Models\GameImage;
 use App\Models\Genre;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
 
 class GameController extends Controller
@@ -26,7 +26,11 @@ class GameController extends Controller
      */
     public function index(): View
     {
-        $games = Game::all();
+        $games = Cache::rememberForever('game-list', function () {
+            return Game::query()
+                ->orderBy('release_date', 'desc')
+                ->get();
+        });
 
         return view('game.index', compact('games'));
     }
@@ -52,7 +56,7 @@ class GameController extends Controller
             Storage::disk('local')->makeDirectory('photo');
         }
 
-        $image = Storage::disk('local')->put('photo', $file);
+        Storage::disk('local')->put('photo', $file);
 
         $developer = Developer::query()->firstOrCreate([
             'name' => $request->developer,
