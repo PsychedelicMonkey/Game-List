@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->jsonb('image');
             $table->mediumText('caption')->nullable();
+            $table->string('file_name');
             $table->string('original_name');
             $table->string('mime_type');
             $table->unsignedBigInteger('size');

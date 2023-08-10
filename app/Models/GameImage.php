@@ -14,6 +14,7 @@ class GameImage extends Model
     protected $fillable = [
         'image',
         'caption',
+        'file_name',
         'original_name',
         'mime_type',
         'size',

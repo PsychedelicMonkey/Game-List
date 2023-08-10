@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\GameImageCreated;
 use App\Models\Developer;
 use App\Models\Game;
 use App\Http\Requests\StoreGameRequest;
@@ -46,13 +47,12 @@ class GameController extends Controller
         $request->validated();
 
         $file = $request->file('image');
-        $size = getimagesize($file);
 
         if (!Storage::directoryExists('public/photo')) {
-            Storage::disk('public')->makeDirectory('photo');
+            Storage::disk('local')->makeDirectory('photo');
         }
 
-        $image = Storage::disk('public')->put('photo', $file);
+        $image = Storage::disk('local')->put('photo', $file);
 
         $developer = Developer::query()->firstOrCreate([
             'name' => $request->developer,
@@ -70,18 +70,17 @@ class GameController extends Controller
             'genre_id' => $genre->id,
         ]);
 
-        GameImage::query()->create([
-            'image' => array(
-                'url' => URL::to(Storage::url($image)),
-                'width' => $size[0],
-                'height' => $size[1],
-            ),
+        $game_image = GameImage::query()->create([
+            'image' => array(),
+            'file_name' => $file->hashName(),
             'original_name' => $file->getClientOriginalName(),
             'mime_type' => $file->getClientMimeType(),
             'file_hash' => hash_file('sha1', $file),
             'size' => $file->getSize(),
             'game_id' => $game->id,
         ]);
+
+        event(new GameImageCreated($game_image));
 
         return redirect()->route('game-list.index');
     }

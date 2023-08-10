@@ -26,6 +26,7 @@ class ClearStorage extends Command
      */
     public function handle(): void
     {
+        Storage::disk('local')->deleteDirectory('photo');
         Storage::disk('public')->deleteDirectory('photo');
     }
 }
