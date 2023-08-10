@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateGameRequest;
 use App\Models\GameImage;
 use App\Models\Genre;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
@@ -24,13 +25,26 @@ class GameController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $games = Cache::rememberForever('game-list', function () {
-            return Game::query()
+        if ($request->has('from') && $request->has('to')) {
+            $from = $request->query('from', '1980');
+            $to = $request->query('to', date('Y'));
+
+            $from = date($from . '-01-01');
+            $to = date($to . '-12-31');
+
+            $games = Game::query()
+                ->whereBetween('release_date', [$from, $to])
                 ->orderBy('release_date', 'desc')
                 ->get();
-        });
+        } else {
+            $games = Cache::rememberForever('game-list', function () {
+                return Game::query()
+                    ->orderBy('release_date', 'desc')
+                    ->get();
+            });
+        }
 
         return view('game.index', compact('games'));
     }
