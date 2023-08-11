@@ -1,0 +1,4 @@
+#system-theme, #dark-theme, #light-theme { display: none; }
+html[color-theme='system'] #system-theme { display: block; }
+html[color-theme='dark'] #dark-theme { display: block; }
+html[color-theme='light'] #light-theme { display: block; }

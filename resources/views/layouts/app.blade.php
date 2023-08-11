@@ -12,15 +12,7 @@
         <title>{{ $title }} - Game List</title>
     @endempty
 
-    <script>
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-            document.documentElement.setAttribute('data-theme', 'dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-            document.documentElement.setAttribute('data-theme', 'light');
-        }
-    </script>
+    @include ('partials.theme')
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -34,9 +26,5 @@
             @yield('content')
         </div>
     </main>
-
-    <script>
-        document.querySelector('#theme-btn').innerHTML = document.documentElement.dataset.theme;
-    </script>
 </body>
 </html>
