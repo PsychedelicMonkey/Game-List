@@ -18,4 +18,6 @@
         <x-navbar-link :href="route('login')" label="Login" />
         <x-navbar-link :href="route('register')" label="Register" />
     @endauth
+
+    <button x-text="$store.theme.value" @click="$store.theme.changeTheme()"></button>
 </nav>

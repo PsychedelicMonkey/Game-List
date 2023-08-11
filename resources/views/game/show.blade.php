@@ -34,7 +34,7 @@
 
             <div class="my-4 pb-2 border-b-2 border-purple-300">
                 <h1 class="text-3xl font-bold mb-2 lg:text-4xl">{{ $game->title }}</h1>
-                <h3 class="text-xl font-semibold text-purple-900">{{ $game->developer->name }}</h3>
+                <h3 class="text-xl font-semibold text-purple-900 dark:text-purple-500">{{ $game->developer->name }}</h3>
             </div>
 
             <div>
