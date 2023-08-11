@@ -1,4 +1,4 @@
-<nav class="flex justify-center items-center gap-2 bg-purple-600 text-white h-14">
+<nav class="flex justify-center items-center gap-2 bg-purple-600 text-white h-14" x-data>
     <x-navbar-link :href="url('/')" label="Home" />
     <x-navbar-link :href="route('game-list.index')" label="Game List" />
 
@@ -19,5 +19,5 @@
         <x-navbar-link :href="route('register')" label="Register" />
     @endauth
 
-    <button x-text="$store.theme.value" @click="$store.theme.changeTheme()"></button>
+    <button id="theme-btn" x-text="$store.theme.value" @click="$store.theme.changeTheme()"></button>
 </nav>

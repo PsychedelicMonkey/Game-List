@@ -12,9 +12,19 @@
         <title>{{ $title }} - Game List</title>
     @endempty
 
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-100 text-black dark:bg-gray-900 dark:text-white" x-data x-cloak>
+<body class="bg-gray-100 text-black dark:bg-gray-900 dark:text-white">
     <header>
         <x-navbar />
     </header>
@@ -24,5 +34,9 @@
             @yield('content')
         </div>
     </main>
+
+    <script>
+        document.querySelector('#theme-btn').innerHTML = document.documentElement.dataset.theme;
+    </script>
 </body>
 </html>

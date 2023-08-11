@@ -9,10 +9,8 @@ Alpine.store('theme', {
       (!('theme' in localStorage) &&
         window.matchMedia('(prefers-color-scheme: dark)').matches)
     ) {
-      document.documentElement.classList.add('dark');
       this.value = 'dark';
     } else {
-      document.documentElement.classList.remove('dark');
       this.value = 'light';
     }
 
@@ -20,11 +18,13 @@ Alpine.store('theme', {
   },
 
   changeTheme() {
-    if (document.documentElement.classList.contains('dark')) {
+    if (localStorage.theme === 'dark') {
       document.documentElement.classList.remove('dark');
+      document.documentElement.setAttribute('data-theme', 'dark');
       this.value = 'light';
     } else {
       document.documentElement.classList.add('dark');
+      document.documentElement.setAttribute('data-theme', 'light');
       this.value = 'dark';
     }
 
