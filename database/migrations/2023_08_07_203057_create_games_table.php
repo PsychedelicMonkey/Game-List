@@ -18,10 +18,13 @@ return new class extends Migration
             $table->date('release_date');
             $table->mediumText('description')->nullable();
             $table->jsonb('urls')->nullable();
-            $table->foreignId('developer_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('genre_id')->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('developer_id');
+            $table->unsignedBigInteger('genre_id');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('developer_id')->references('id')->on('developers')->cascadeOnDelete();
+            $table->foreign('genre_id')->references('id')->on('genres')->cascadeOnDelete();
         });
     }
 

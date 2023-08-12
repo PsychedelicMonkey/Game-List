@@ -1,3 +1,7 @@
+input[type=text], input[type=date] {
+    @apply bg-transparent;
+}
+
 #system-theme, #dark-theme, #light-theme { display: none; }
 html[color-theme='system'] #system-theme { display: block; }
 html[color-theme='dark'] #dark-theme { display: block; }

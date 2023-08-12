@@ -26,4 +26,8 @@ Route::resource('game-list', GameController::class)->parameters([
     'game-list' => 'game:slug',
 ])->only('show');
 
+Route::resource('genre', \App\Http\Controllers\GenreController::class)->parameters([
+    'genre' => 'genre:slug'
+])->only('show');
+
 require __DIR__ . '/auth.php';

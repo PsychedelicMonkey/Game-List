@@ -45,7 +45,7 @@
 
         <div>
             <label for="description">Genre</label>
-            <textarea name="description" id="description" cols="30" rows="10">{{ old('description') }}</textarea>
+            <textarea name="description" id="description" cols="30" rows="10" class="bg-transparent">{{ old('description') }}</textarea>
 
             @error('description')
             <p>{{ $message }}</p>

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Genre;
 use App\Http\Requests\StoreGenreRequest;
 use App\Http\Requests\UpdateGenreRequest;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class GenreController extends Controller
 {
@@ -35,9 +38,21 @@ class GenreController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Genre $genre)
+    public function show(Genre $genre, Request $request): View
     {
-        //
+        if ($request->has('from') && $request->has('to')) {
+            $from = $request->query('from', '1980');
+            $to = $request->query('to', date('Y'));
+
+            $from = date($from . '-01-01');
+            $to = date($to . '-12-31');
+
+            $genre->load(['games' => function ($query) use ($from, $to) {
+                $query->whereBetween('release_date', [$from, $to])->get();
+            }]);
+        }
+
+        return view('genre.show', compact('genre'));
     }
 
     /**

@@ -5,7 +5,9 @@ namespace App\Providers;
 use App\Events\GameImageCreated;
 use App\Listeners\FormatGameImage;
 use App\Models\Game;
+use App\Models\Genre;
 use App\Observers\GameObserver;
+use App\Observers\GenreObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -29,6 +31,7 @@ class EventServiceProvider extends ServiceProvider
 
     protected $observers = [
         Game::class => [GameObserver::class],
+        Genre::class => [GenreObserver::class],
     ];
 
     /**
