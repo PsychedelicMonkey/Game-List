@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\GenreController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +27,7 @@ Route::resource('game-list', GameController::class)->parameters([
     'game-list' => 'game:slug',
 ])->only('show');
 
-Route::resource('genre', \App\Http\Controllers\GenreController::class)->parameters([
+Route::resource('genre', GenreController::class)->parameters([
     'genre' => 'genre:slug'
 ])->only('show');
 

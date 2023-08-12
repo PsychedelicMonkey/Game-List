@@ -52,6 +52,24 @@
         </div>
 
         <div>
+            <label for="urls">GOG URL</label>
+            <input type="text" name="gog_url" id="gog_url" value="{{ old('gog_url') }}" />
+
+            @error('gog_url')
+            <p>{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div>
+            <label for="urls">Steam URL</label>
+            <input type="text" name="steam_url" id="steam_url" value="{{ old('steam_url') }}" />
+
+            @error('steam_url')
+            <p>{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div>
             <label for="image">Image</label>
             <input type="file" name="image" id="image" />
 

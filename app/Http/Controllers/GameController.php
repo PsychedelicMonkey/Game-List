@@ -86,6 +86,10 @@ class GameController extends Controller
             'description' => $request->description,
             'developer_id' => $developer->id,
             'genre_id' => $genre->id,
+            'urls' => array(
+                'gog' => $request->gog_url,
+                'steam' => $request->steam_url,
+            ),
         ]);
 
         $game_image = GameImage::query()->create([
@@ -140,6 +144,10 @@ class GameController extends Controller
             'description' => $request->description,
             'developer_id' => $developer->id,
             'genre_id' => $genre->id,
+            'urls' => array(
+                'gog' => $request->gog_url,
+                'steam' => $request->steam_url,
+            ),
         ]);
 
         return redirect()->route('game-list.show', $game->slug);

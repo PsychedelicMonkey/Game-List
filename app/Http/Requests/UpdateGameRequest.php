@@ -27,6 +27,8 @@ class UpdateGameRequest extends FormRequest
             'genre' => ['required', 'max:80'],
             'release_date' => ['required', 'date'],
             'description' => ['nullable', 'max:255'],
+            'gog_url' => ['nullable', 'url'],
+            'steam_url' => ['nullable', 'url'],
         ];
     }
 }

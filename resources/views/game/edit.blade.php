@@ -44,10 +44,28 @@
         </div>
 
         <div>
-            <label for="description">Genre</label>
-            <textarea name="description" id="description" cols="30" rows="10" class="bg-transparent">{{ old('description') }}</textarea>
+            <label for="description">Description</label>
+            <textarea name="description" id="description" cols="30" rows="10" class="bg-transparent">{{ $game->description }}</textarea>
 
             @error('description')
+            <p>{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div>
+            <label for="urls">GOG URL</label>
+            <input type="text" name="gog_url" id="gog_url" value="{{ $game->urls['gog'] ?? null }}" />
+
+            @error('gog_url')
+            <p>{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div>
+            <label for="urls">Steam URL</label>
+            <input type="text" name="steam_url" id="steam_url" value="{{ $game->urls['steam'] ?? null }}" />
+
+            @error('steam_url')
             <p>{{ $message }}</p>
             @enderror
         </div>

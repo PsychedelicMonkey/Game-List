@@ -28,6 +28,8 @@ class StoreGameRequest extends FormRequest
             'release_date' => ['required', 'date'],
             'description' => ['nullable', 'max:255'],
             'image' => ['required', 'image'],
+            'gog_url' => ['nullable', 'url'],
+            'steam_url' => ['nullable', 'url'],
         ];
     }
 }

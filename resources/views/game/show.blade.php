@@ -42,6 +42,16 @@
                 <h4 class="text-lg">
                     Release Date: <strong>{{ date('F j, Y', strtotime($game->release_date)) }}</strong>
                 </h4>
+
+                {{-- TODO: Style store links --}}
+
+                @if(isset($game->urls['gog']))
+                    <a href="{{ $game->urls['gog'] }}" target="_blank">GOG</a>
+                @endif
+
+                @if(isset($game->urls['steam']))
+                    <a href="{{ $game->urls['steam'] }}" target="_blank">Steam</a>
+                @endif
             </div>
         </div>
     </div>
