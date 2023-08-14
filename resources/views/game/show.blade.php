@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => $game->title])
+@extends('partials.app', ['title' => $game->title])
 
 @section('content')
     @auth

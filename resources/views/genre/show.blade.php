@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('partials.app')
 
 @section('content')
     <div class="my-3">
@@ -6,10 +6,10 @@
     </div>
 
     <div>
-        @include ('partials.year-form', ['route' => route('genre.show', $genre)])
+        <x-year-form :route="route('genre.show', $genre)"/>
     </div>
 
-    @include ('partials.genre-badges')
+    <x-genre-badges/>
 
-    @include ('partials.game-grid', ['games' => $genre->games])
+    <x-game-grid :games="$genre->games"/>
 @endsection

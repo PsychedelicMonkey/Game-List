@@ -1,4 +1,4 @@
-@extends('layouts.guest', ['title' => 'Reset Password'])
+@extends('partials.guest', ['title' => 'Reset Password'])
 
 @section('content')
     <div class="mb-10">
@@ -7,17 +7,17 @@
         </h1>
     </div>
 
-    <x-form :route="route('password.update')">
-        <input type="hidden" name="token" value="{{ $token }}" />
+    <x-form.auth :route="route('password.update')">
+        <input type="hidden" name="token" value="{{ $token }}"/>
 
-        <x-input type="email" id="email" label="Email Address" />
+        <x-input.auth type="email" id="email" label="Email Address"/>
 
-        <x-input type="password" id="password" label="Password" />
+        <x-input.auth type="password" id="password" label="Password"/>
 
-        <x-input type="password" id="password_confirmation" label="Confirm Password" />
+        <x-input.auth type="password" id="password_confirmation" label="Confirm Password"/>
 
-        <x-button label="Reset Password" />
-    </x-form>
+        <x-button.auth label="Reset Password"/>
+    </x-form.auth>
 
     <div class="text-center mt-4">
         <a href="{{ route('login') }}" class="text-white font-semibold no-underline hover:underline">

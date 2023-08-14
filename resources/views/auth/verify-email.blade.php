@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('partials.app')
 
 @section('content')
     <h1 class="text-3xl font-semibold underline">Verify your email</h1>

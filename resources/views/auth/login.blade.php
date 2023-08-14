@@ -1,4 +1,4 @@
-@extends('layouts.guest', ['title' => 'Login'])
+@extends('partials.guest', ['title' => 'Login'])
 
 @section('content')
     <div class="mb-10">
@@ -7,26 +7,27 @@
         </h1>
     </div>
 
-    <x-form :route="route('login')">
+    <x-form.auth :route="route('login')">
         <div class="mb-4">
-            <x-input type="email" id="email" label="Email Address" :value="old('email')" />
+            <x-input.auth type="email" id="email" label="Email Address" :value="old('email')"/>
 
-            <x-input type="password" id="password" label="Password" />
+            <x-input.auth type="password" id="password" label="Password"/>
 
             <div class="flex justify-between items-end">
                 <div>
-                    <input type="checkbox" name="remember" id="remember" class="focus:ring-0 focus:ring-offset-0" />
+                    <input type="checkbox" name="remember" id="remember" class="focus:ring-0 focus:ring-offset-0"/>
                     <label for="remember" class="text-white font-semibold ml-1">Remember Me</label>
                 </div>
 
-                <a href="{{ route('password.request') }}" class="text-white font-semibold drop-shadow-lg no-underline hover:underline">
+                <a href="{{ route('password.request') }}"
+                   class="text-white font-semibold drop-shadow-lg no-underline hover:underline">
                     Forgot Password?
                 </a>
             </div>
         </div>
 
-        <x-button label="Login" />
-    </x-form>
+        <x-button.auth label="Login"/>
+    </x-form.auth>
 
     <div class="text-center mt-4">
         <a href="{{ route('register') }}" class="text-white font-semibold no-underline hover:underline">
