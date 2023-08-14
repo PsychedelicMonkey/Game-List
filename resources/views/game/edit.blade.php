@@ -1,87 +1,34 @@
 @extends('partials.app')
 
 @section('content')
-    <h1 class="text-3xl font-semibold underline">Update Game</h1>
+    <h1 class="text-3xl text-center font-semibold my-4">Edit Game - {{ $game->title }}</h1>
 
-    <form action="{{ route('game-list.update', $game) }}" method="post">
-        @csrf
+    <x-form.main :action="route('game-list.update', $game)">
         @method('PUT')
 
-        <div>
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" value="{{ $game->title }}" class="bg-transparent"/>
+        <x-input.main id="title" label="Title" :value="$game->title" />
 
-            @error('title')
-            <p>{{ $message }}</p>
-            @enderror
-        </div>
+        <x-input.main id="developer" label="Developer" :value="$game->developer->name" />
 
-        <div>
-            <label for="developer">Developer</label>
-            <input type="text" name="developer" id="developer" value="{{ $game->developer->name }}"
-                   class="bg-transparent"/>
+        <x-input.main id="genre" label="Genre" :value="$game->genre->name" />
 
-            @error('developer')
-            <p>{{ $message }}</p>
-            @enderror
-        </div>
+        <x-input.main type="date" id="release_date" label="Release Date" :value="date('Y-m-d', strtotime($game->release_date))" />
 
-        <div>
-            <label for="genre">Genre</label>
-            <input type="text" name="genre" id="genre" value="{{ $game->genre->name }}" class="bg-transparent"/>
+        <x-input.textarea id="description" label="Description" :value="$game->description" />
 
-            @error('genre')
-            <p>{{ $message }}</p>
-            @enderror
-        </div>
+        <x-input.main id="gog_url" label="GOG URL" :value="$game->urls['gog'] ?? null" />
 
-        <div>
-            <label for="release_date">Release Date</label>
-            <input type="date" name="release_date" id="release_date"
-                   value="{{ date('Y-m-d', strtotime($game->release_date)) }}" class="bg-transparent"/>
+        <x-input.main id="steam_url" label="Steam URL" :value="$game->urls['steam'] ?? null" />
 
-            @error('release_date')
-            <p>{{ $message }}</p>
-            @enderror
-        </div>
+        <x-button.main label="Update Game" />
+    </x-form.main>
 
-        <div>
-            <label for="description">Description</label>
-            <textarea name="description" id="description" cols="30" rows="10"
-                      class="bg-transparent">{{ $game->description }}</textarea>
 
-            @error('description')
-            <p>{{ $message }}</p>
-            @enderror
-        </div>
+    <div class="mt-8 border-t-2 border-t-neutral-500 pt-8">
+        <x-form.main :action="route('game-list.destroy', $game)">
+            @method('DELETE')
 
-        <div>
-            <label for="urls">GOG URL</label>
-            <input type="text" name="gog_url" id="gog_url" value="{{ $game->urls['gog'] ?? null }}"
-                   class="bg-transparent"/>
-
-            @error('gog_url')
-            <p>{{ $message }}</p>
-            @enderror
-        </div>
-
-        <div>
-            <label for="urls">Steam URL</label>
-            <input type="text" name="steam_url" id="steam_url" value="{{ $game->urls['steam'] ?? null }}"
-                   class="bg-transparent"/>
-
-            @error('steam_url')
-            <p>{{ $message }}</p>
-            @enderror
-        </div>
-
-        <button type="submit">Submit</button>
-    </form>
-
-    <form action="{{ route('game-list.destroy', $game) }}" method="post">
-        @csrf
-        @method('DELETE')
-
-        <button type="submit">Delete</button>
-    </form>
+            <x-button.main label="Delete Game" color="red" />
+        </x-form.main>
+    </div>
 @endsection

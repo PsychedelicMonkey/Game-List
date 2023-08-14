@@ -14,4 +14,10 @@ export default {
     },
   },
   plugins: [require('@tailwindcss/forms')],
+  safelist: [
+    {
+      pattern: /(bg|border|text)-(red|blue)-(600)/,
+      variants: ['hover'],
+    },
+  ],
 };

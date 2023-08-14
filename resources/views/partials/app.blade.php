@@ -22,7 +22,7 @@
     </header>
 
     <main>
-        <div class="container">
+        <div class="container mb-10">
             @yield('content')
         </div>
     </main>
