@@ -67,10 +67,14 @@ class GameController extends Controller
 
         $file = $request->file('image');
 
+        $tags = $this->formatTags($request->tags);
+
+        // Make photo directory
         if (!Storage::directoryExists('public/photo')) {
             Storage::disk('local')->makeDirectory('photo');
         }
 
+        // Upload image to photo directory
         Storage::disk('local')->put('photo', $file);
 
         $developer = Developer::query()->firstOrCreate([
@@ -97,6 +101,9 @@ class GameController extends Controller
                 'steam' => $request->steam_url,
             ),
         ]);
+
+        // Attach tags
+        $game->attachTags($tags);
 
         $game_image = GameImage::query()->create([
             'image' => array(),
@@ -136,6 +143,8 @@ class GameController extends Controller
     {
         $request->validated();
 
+        $tags = $this->formatTags($request->tags);
+
         $developer = Developer::query()->firstOrCreate([
             'name' => $request->developer,
         ]);
@@ -161,6 +170,9 @@ class GameController extends Controller
             ),
         ]);
 
+        // Sync tags
+        $game->syncTags($tags);
+
         return redirect()->route('game-list.show', $game->slug);
     }
 
@@ -172,5 +184,12 @@ class GameController extends Controller
         $game->delete();
 
         return redirect()->intended('game-list');
+    }
+
+    private function formatTags(string $tags): array
+    {
+        $arr = explode(',', $tags);
+        $arr = array_map('trim', $arr);
+        return array_map('ucfirst', $arr);
     }
 }

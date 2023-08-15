@@ -30,6 +30,7 @@ class UpdateGameRequest extends FormRequest
             'description' => ['nullable', 'max:255'],
             'gog_url' => ['nullable', 'url'],
             'steam_url' => ['nullable', 'url'],
+            'tags' => ['required', 'max:255'],
         ];
     }
 }

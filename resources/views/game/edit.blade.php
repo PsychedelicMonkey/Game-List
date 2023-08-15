@@ -24,6 +24,8 @@
 
         <x-input.main id="steam_url" label="Steam URL" :value="$game->urls['steam'] ?? null" />
 
+        <x-input.main id="tags" label="Tags" :value="$game->tags->pluck('name')->implode(', ')" />
+
         <x-button.main label="Update Game" />
     </x-form.main>
 

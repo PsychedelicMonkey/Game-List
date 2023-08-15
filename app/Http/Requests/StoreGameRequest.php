@@ -31,6 +31,7 @@ class StoreGameRequest extends FormRequest
             'image' => ['required', 'image'],
             'gog_url' => ['nullable', 'url'],
             'steam_url' => ['nullable', 'url'],
+            'tags' => ['required', 'max:255'],
         ];
     }
 }

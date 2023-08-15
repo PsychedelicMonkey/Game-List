@@ -24,6 +24,8 @@
 
         <x-input.main type="file" id="image" label="Image" />
 
+        <x-input.main id="tags" label="Tags" />
+
         <x-button.main label="Create Game" />
     </x-form.main>
 @endsection

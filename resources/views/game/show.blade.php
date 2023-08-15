@@ -43,9 +43,16 @@
             </div>
 
             <div>
-                <h4 class="text-lg">Genre: <strong>{{ $game->genre->name }}</strong></h4>
+                <h4 class="text-lg">
+                    Genre: <strong>{{ $game->genre->name }}</strong>
+                </h4>
+
                 <h4 class="text-lg">
                     Release Date: <strong>{{ date('F j, Y', strtotime($game->release_date)) }}</strong>
+                </h4>
+
+                <h4 class="text-lg">
+                    Tags: <strong>{{ $game->tags->pluck('name')->implode(', ') }}</strong>
                 </h4>
 
                 {{-- TODO: Style store links --}}
