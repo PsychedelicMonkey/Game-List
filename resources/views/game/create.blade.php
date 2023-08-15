@@ -6,7 +6,11 @@
     <x-form.main :action="route('game-list.store')" enctype="multipart/form-data">
         <x-input.main id="title" label="Title" />
 
-        <x-input.main id="developer" label="Developer" />
+        <div class="grid grid-cols-2 gap-4">
+            <x-input.main id="developer" label="Developer" />
+
+            <x-input.main id="publisher" label="Publisher" />
+        </div>
 
         <x-input.main id="genre" label="Genre" />
 

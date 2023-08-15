@@ -9,6 +9,7 @@ use App\Http\Requests\StoreGameRequest;
 use App\Http\Requests\UpdateGameRequest;
 use App\Models\GameImage;
 use App\Models\Genre;
+use App\Models\Publisher;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -80,12 +81,17 @@ class GameController extends Controller
             'name' => $request->genre,
         ]);
 
+        $publisher = Publisher::query()->firstOrCreate([
+            'name' => $request->publisher,
+        ]);
+
         $game = Game::query()->create([
             'title' => $request->title,
             'release_date' => $request->release_date,
             'description' => $request->description,
             'developer_id' => $developer->id,
             'genre_id' => $genre->id,
+            'publisher_id' => $publisher->id,
             'urls' => array(
                 'gog' => $request->gog_url,
                 'steam' => $request->steam_url,
@@ -138,12 +144,17 @@ class GameController extends Controller
             'name' => $request->genre,
         ]);
 
+        $publisher = Publisher::query()->firstOrCreate([
+            'name' => $request->publisher,
+        ]);
+
         $game->update([
             'title' => $request->title,
             'release_date' => $request->release_date,
             'description' => $request->description,
             'developer_id' => $developer->id,
             'genre_id' => $genre->id,
+            'publisher_id' => $publisher->id,
             'urls' => array(
                 'gog' => $request->gog_url,
                 'steam' => $request->steam_url,

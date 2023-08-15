@@ -24,6 +24,7 @@ class StoreGameRequest extends FormRequest
         return [
             'title' => ['required', 'max:100'],
             'developer' => ['required', 'max:80'],
+            'publisher' => ['required', 'max:80'],
             'genre' => ['required', 'max:80'],
             'release_date' => ['required', 'date'],
             'description' => ['nullable', 'max:255'],

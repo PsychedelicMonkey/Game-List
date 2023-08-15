@@ -8,7 +8,11 @@
 
         <x-input.main id="title" label="Title" :value="$game->title" />
 
-        <x-input.main id="developer" label="Developer" :value="$game->developer->name" />
+        <div class="grid grid-cols-2 gap-4">
+            <x-input.main id="developer" label="Developer" :value="$game->developer->name" />
+
+            <x-input.main id="publisher" label="Publisher" :value="$game->publisher->name" />
+        </div>
 
         <x-input.main id="genre" label="Genre" :value="$game->genre->name" />
 

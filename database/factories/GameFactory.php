@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Developer;
 use App\Models\Genre;
+use App\Models\Publisher;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,6 +24,7 @@ class GameFactory extends Factory
             'release_date' => fake()->date(),
             'developer_id' => Developer::factory()->create(),
             'genre_id' => Genre::factory()->create(),
+            'publisher_id' => Publisher::factory()->create(),
         ];
     }
 }

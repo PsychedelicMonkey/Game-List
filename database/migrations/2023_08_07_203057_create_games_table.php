@@ -20,11 +20,13 @@ return new class extends Migration
             $table->jsonb('urls')->nullable();
             $table->unsignedBigInteger('developer_id');
             $table->unsignedBigInteger('genre_id');
+            $table->unsignedBigInteger('publisher_id');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('developer_id')->references('id')->on('developers')->cascadeOnDelete();
             $table->foreign('genre_id')->references('id')->on('genres')->cascadeOnDelete();
+            $table->foreign('publisher_id')->references('id')->on('publishers')->cascadeOnDelete();
         });
     }
 

@@ -23,6 +23,7 @@ class Game extends Model
         'urls',
         'developer_id',
         'genre_id',
+        'publisher_id',
     ];
 
     protected $casts = [
@@ -43,6 +44,11 @@ class Game extends Model
     public function images(): HasMany
     {
         return $this->hasMany(GameImage::class);
+    }
+
+    public function publisher(): BelongsTo
+    {
+        return $this->belongsTo(Publisher::class);
     }
 
     public function getSlugOptions(): SlugOptions

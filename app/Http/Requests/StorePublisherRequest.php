@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateGameRequest extends FormRequest
+class StorePublisherRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,14 +22,7 @@ class UpdateGameRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'max:100'],
-            'developer' => ['required', 'max:80'],
-            'publisher' => ['required', 'max:80'],
-            'genre' => ['required', 'max:80'],
-            'release_date' => ['required', 'date'],
-            'description' => ['nullable', 'max:255'],
-            'gog_url' => ['nullable', 'url'],
-            'steam_url' => ['nullable', 'url'],
+            //
         ];
     }
 }
