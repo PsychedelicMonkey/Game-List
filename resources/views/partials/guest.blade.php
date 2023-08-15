@@ -17,7 +17,7 @@
 <body>
     <main>
         <div class="bg-purple-600 w-full h-screen flex justify-center items-center">
-            <div class="w-3/4 md:w-1/2 lg:w-1/5">
+            <div class="w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/5">
                 @if(session()->has('status'))
                     <div class="text-center bg-purple-400 p-2 mb-7 rounded-lg">
                         <p class="font-semibold text-lg">{{ session('status') }}</p>
