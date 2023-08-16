@@ -32,7 +32,7 @@ Route::middleware('guest')->group(function () {
         ->name('password.reset');
 
     Route::post('reset-password', [ResetPasswordController::class, 'store'])
-        ->name('password.update');
+        ->name('password.store');
 });
 
 Route::middleware('auth')->group(function () {

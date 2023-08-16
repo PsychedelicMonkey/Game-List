@@ -7,7 +7,7 @@
         </h1>
     </div>
 
-    <x-form.auth :route="route('password.update')">
+    <x-form.auth :route="route('password.store')">
         <input type="hidden" name="token" value="{{ $token }}"/>
 
         <x-input.auth type="email" id="email" label="Email Address"/>
