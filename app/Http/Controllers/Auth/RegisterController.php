@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
 
 class RegisterController extends Controller
@@ -24,7 +25,7 @@ class RegisterController extends Controller
         $request->validate([
             'name' => ['required', 'max:100'],
             'email' => ['required', 'email', 'unique:'.User::class],
-            'password' => ['required', 'confirmed'],
+            'password' => ['required', 'confirmed', Password::defaults()],
         ]);
 
         $user = User::query()->create([
