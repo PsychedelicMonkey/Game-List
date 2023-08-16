@@ -8,9 +8,16 @@
         id="{{ $id }}"
         value="{{ $value ?? old($id) }}"
         class="bg-transparent rounded-lg"
+        placeholder="{{ $placeholder ?? null }}"
     />
 
-    @error($id)
-    <p class="font-semibold text-lg text-red-600 mt-1">{{ $message }}</p>
-    @enderror
+    @isset($messages)
+        @foreach((array) $messages as $message)
+            <p class="font-semibold text-lg text-red-600 mt-1">{{ $message }}</p>
+        @endforeach
+    @else
+        @error($id)
+            <p class="font-semibold text-lg text-red-600 mt-1">{{ $message }}</p>
+        @enderror
+    @endisset
 </div>

@@ -39,4 +39,26 @@
 
         <x-button.main />
     </x-form.main>
+
+    <section class="space-y-6">
+        <header>
+            <h2 class="text-3xl font-semibold my-4">Delete Account</h2>
+            {{-- TODO: Change the warning message --}}
+            <p>Once your account is deleted, all of your data will be deleted.</p>
+
+            <x-form.main :action="route('profile.destroy')">
+                @method('DELETE')
+
+                <x-input.main
+                    type="password"
+                    id="password"
+                    label="Password"
+                    placeholder="Password"
+                    :messages="$errors->userDeletion->get('password')"
+                />
+
+                <x-button.main color="red" label="Delete" />
+            </x-form.main>
+        </header>
+    </section>
 @endsection
