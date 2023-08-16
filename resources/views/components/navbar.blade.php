@@ -7,6 +7,8 @@
     @endcan
 
     @auth
+        <x-navbar-link :href="route('profile.edit')" label="Profile" />
+
         <form action="{{ route('logout') }}" method="post" class="inline-block">
             @csrf
 
