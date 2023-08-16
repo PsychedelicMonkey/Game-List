@@ -19,7 +19,7 @@ class ClearStorage extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Clear all file uploads from the storage directory';
 
     /**
      * Execute the console command.
