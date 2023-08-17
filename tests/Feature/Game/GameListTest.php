@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Game;
 
+use App\Events\GameImageCreated;
 use App\Models\Game;
 use App\Models\GameImage;
 use App\Models\User;
@@ -64,6 +65,10 @@ class GameListTest extends TestCase
 
     public function test_game_can_be_created(): void
     {
+        Event::fake([
+            GameImageCreated::class,
+        ]);
+
         $user = User::factory()->create([
             'is_admin' => true,
         ]);
@@ -80,7 +85,7 @@ class GameListTest extends TestCase
                 'tags' => 'test,tags',
             ]);
 
-        Event::fake();
+        Event::assertDispatched(GameImageCreated::class);
 
         $response
             ->assertSessionDoesntHaveErrors()
