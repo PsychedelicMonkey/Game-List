@@ -8,7 +8,7 @@
         name="{{ $id }}"
         id="{{ $id }}"
         value="{{ $value ?? old($id) }}"
-        class="bg-purple-800 text-white p-2 rounded-lg border-2 border-purple-800"
+        class="bg-purple-800 dark:bg-purple-900 text-white p-2 rounded-lg border-2 border-purple-800 dark:border-purple-900"
     />
 
     @error($id)

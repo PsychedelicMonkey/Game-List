@@ -1,4 +1,4 @@
-<nav class="flex justify-center items-center gap-2 bg-purple-600 text-white h-14">
+<nav class="fixed w-full flex justify-center items-center gap-2 bg-purple-600 dark:bg-purple-800 text-white h-14">
     <x-navbar-link :href="url('/')">Home</x-navbar-link>
     <x-navbar-link :href="route('game-list.index')">Game List</x-navbar-link>
 
