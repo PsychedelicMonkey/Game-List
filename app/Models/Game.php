@@ -7,13 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
 
 class Game extends Model
 {
-    use HasFactory, HasSlug, HasTags, SoftDeletes;
+    use HasFactory;
+    use HasSlug;
+    use HasTags;
+    use Searchable;
+    use SoftDeletes;
 
     protected $fillable = [
         'title',
@@ -56,5 +61,10 @@ class Game extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
+    }
+
+    public function searchableAs(): string
+    {
+        return 'games_index';
     }
 }
