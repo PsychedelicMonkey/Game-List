@@ -32,5 +32,5 @@
         @endforeach
     </div>
 @else
-    <h3>No games found</h3>
+    <h3>{{ __('No games found') }}</h3>
 @endif

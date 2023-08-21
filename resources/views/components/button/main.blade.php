@@ -1,4 +1,4 @@
-@props(['color' => 'blue', 'label' => 'Submit'])
+@props(['color' => 'blue', 'label' => __('Submit')])
 
 <button
     type="submit"

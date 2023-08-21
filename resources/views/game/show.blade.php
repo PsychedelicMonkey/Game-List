@@ -9,7 +9,7 @@
                        class="inline-block w-14 border-2 hover:bg-transparent text-white text-center no-underline transition-colors duration-200 rounded-md px-2 py-1
                                 border-blue-600 bg-blue-600 hover:text-blue-600"
                     >
-                        Edit
+                        {{ __('Edit') }}
                     </a>
                 </div>
             @endcan
@@ -35,24 +35,29 @@
             <div class="my-4 pb-2 border-b-2 border-purple-300">
                 <h1 class="text-3xl font-bold mb-2 lg:text-4xl">{{ $game->title }}</h1>
                 <h3 class="text-xl font-semibold">
-                    Developer: <span class="text-purple-900 dark:text-purple-500">{{ $game->developer->name }}</span>
+                    {{ __('Developer:') }}
+                    <span class="text-purple-900 dark:text-purple-500">{{ $game->developer->name }}</span>
                 </h3>
                 <h3 class="text-xl font-semibold">
-                    Publisher: <span class="text-purple-900 dark:text-purple-500">{{ $game->publisher->name }}</span>
+                    {{ __('Publisher:') }}
+                    <span class="text-purple-900 dark:text-purple-500">{{ $game->publisher->name }}</span>
                 </h3>
             </div>
 
             <div>
                 <h4 class="text-lg">
-                    Genre: <strong>{{ $game->genre->name }}</strong>
+                    {{ __('Genre:') }}
+                    <strong>{{ $game->genre->name }}</strong>
                 </h4>
 
                 <h4 class="text-lg">
-                    Release Date: <strong>{{ date('F j, Y', strtotime($game->release_date)) }}</strong>
+                    {{ __('Release Date:') }}
+                    <strong>{{ date('F j, Y', strtotime($game->release_date)) }}</strong>
                 </h4>
 
                 <h4 class="text-lg">
-                    Tags: <strong>{{ $game->tags->pluck('name')->implode(', ') }}</strong>
+                    {{ __('Tags:') }}
+                    <strong>{{ $game->tags->pluck('name')->implode(', ') }}</strong>
                 </h4>
 
                 {{-- TODO: Style store links --}}
