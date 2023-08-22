@@ -17,8 +17,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-@include('layouts.header')
-
 <main>
     <div class="bg-purple-600 dark:bg-purple-800 w-full h-screen flex justify-center items-center">
         <div class="w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/5">
@@ -28,7 +26,7 @@
                 </div>
             @endif
 
-            @yield('content')
+            {{ $slot }}
         </div>
     </div>
 </main>

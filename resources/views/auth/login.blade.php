@@ -1,6 +1,4 @@
-@extends('layouts.guest', ['title' => __('Login')])
-
-@section('content')
+<x-guest-layout :title="__('Login')">
     <div class="mb-10">
         <h1 class="font-bold text-3xl text-white text-center drop-shadow-md">
             {{ __('Login to Your Account') }}
@@ -34,4 +32,4 @@
             {{ __('Don\'t have an account? Sign Up') }}
         </a>
     </div>
-@endsection
+</x-guest-layout>

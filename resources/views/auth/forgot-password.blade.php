@@ -1,6 +1,4 @@
-@extends('layouts.guest', ['title' => __('Forgot Your Password')])
-
-@section('content')
+<x-guest-layout :title="__('Forgot Your Password')">
     <div class="mb-10">
         <h1 class="font-bold text-3xl text-white text-center drop-shadow-md">
             {{ __('Forgot Your Password?') }}
@@ -18,4 +16,4 @@
             {{ __('Remember your password? Login') }}
         </a>
     </div>
-@endsection
+</x-guest-layout>
