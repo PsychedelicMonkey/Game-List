@@ -1,6 +1,4 @@
-@extends('partials.app')
-
-@section('content')
+<x-app-layout>
     <h1 class="text-3xl font-semibold underline">{{ __('Verify your email') }}</h1>
 
     @if(session()->has('status'))
@@ -12,4 +10,4 @@
 
         <button type="submit">{{ __('Send verification link') }}</button>
     </form>
-@endsection
+</x-app-layout>

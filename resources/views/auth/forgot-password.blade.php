@@ -1,4 +1,4 @@
-@extends('partials.guest', ['title' => __('Forgot Your Password')])
+@extends('layouts.guest', ['title' => __('Forgot Your Password')])
 
 @section('content')
     <div class="mb-10">

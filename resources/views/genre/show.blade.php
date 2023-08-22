@@ -1,6 +1,4 @@
-@extends('partials.app')
-
-@section('content')
+<x-app-layout :title="$genre->name">
     <div class="my-3">
         <h1 class="text-3xl font-semibold underline">{{ $genre->name }}</h1>
     </div>
@@ -12,4 +10,4 @@
     <x-genre-badges/>
 
     <x-game-grid :games="$genre->games"/>
-@endsection
+</x-app-layout>

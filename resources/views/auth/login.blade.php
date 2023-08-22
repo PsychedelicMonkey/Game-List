@@ -1,4 +1,4 @@
-@extends('partials.guest', ['title' => __('Login')])
+@extends('layouts.guest', ['title' => __('Login')])
 
 @section('content')
     <div class="mb-10">
@@ -19,7 +19,8 @@
                     <label for="remember" class="text-white font-semibold ml-1">{{ __('Remember Me') }}</label>
                 </div>
 
-                <a href="{{ route('password.request') }}" class="text-white font-semibold drop-shadow-lg no-underline hover:underline">
+                <a href="{{ route('password.request') }}"
+                   class="text-white font-semibold drop-shadow-lg no-underline hover:underline">
                     {{ __('Forgot Password?') }}
                 </a>
             </div>

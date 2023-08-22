@@ -1,6 +1,4 @@
-@extends('partials.app', ['title' => $game->title])
-
-@section('content')
+<x-app-layout :title="$game->title">
     @auth
         <div class="mt-3">
             @can('update', $game)
@@ -72,4 +70,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-app-layout>

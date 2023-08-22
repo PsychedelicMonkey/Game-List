@@ -1,6 +1,4 @@
-@extends('partials.app')
-
-@section('content')
+<x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto space-y-8">
             <div class="p-6 bg-white dark:bg-gray-800 shadow rounded-lg">
@@ -22,4 +20,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-app-layout>

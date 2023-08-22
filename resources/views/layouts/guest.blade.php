@@ -12,17 +12,25 @@
         <title>{{ $title }} - Game List</title>
     @endempty
 
-    @include ('partials.theme')
+    @include('layouts.theme')
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-200 text-black dark:bg-gray-900 dark:text-white">
-    @include('partials.header')
+<body>
+@include('layouts.header')
 
-    <main class="pt-14">
-        <div class="container mb-10">
+<main>
+    <div class="bg-purple-600 dark:bg-purple-800 w-full h-screen flex justify-center items-center">
+        <div class="w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/5">
+            @if(session()->has('status'))
+                <div class="text-center bg-purple-400 p-2 mb-7 rounded-lg">
+                    <p class="font-semibold text-lg">{{ session('status') }}</p>
+                </div>
+            @endif
+
             @yield('content')
         </div>
-    </main>
+    </div>
+</main>
 </body>
 </html>

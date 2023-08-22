@@ -1,4 +1,4 @@
-@extends('partials.guest', ['title' => __('Register')])
+@extends('layouts.guest', ['title' => __('Register')])
 
 @section('content')
     <div class="mb-10">
