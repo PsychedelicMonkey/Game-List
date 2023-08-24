@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\PasswordConfirmationController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -50,5 +51,12 @@ Route::middleware('auth')->group(function () {
         ->middleware(['throttle:6,1'])
         ->name('verification.send');
 
-    Route::put('password', [PasswordController::class, 'update'])->name('password.update');
+    Route::put('password', [PasswordController::class, 'update'])
+        ->name('password.update');
+
+    Route::get('confirm-password', [PasswordConfirmationController::class, 'create'])
+        ->name('password.confirm');
+
+    Route::post('confirm-password', [PasswordConfirmationController::class, 'store'])
+        ->middleware('throttle:6,1');
 });
