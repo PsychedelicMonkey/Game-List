@@ -10,7 +10,9 @@ class SearchController extends Controller
 {
     public function __invoke(Request $request): View
     {
-        $games = Game::search($request->search)->get();
+        $perPage = 20;
+
+        $games = Game::search($request->search)->paginate($perPage);
 
         return view('search', compact('games'));
     }

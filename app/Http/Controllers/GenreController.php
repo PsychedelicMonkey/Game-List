@@ -40,6 +40,8 @@ class GenreController extends Controller
      */
     public function show(Genre $genre, Request $request): View
     {
+        $perPage = 20;
+
         if ($request->has('from') && $request->has('to')) {
             $from = $request->query('from', '1980');
             $to = $request->query('to', date('Y'));
@@ -47,9 +49,15 @@ class GenreController extends Controller
             $from = date($from . '-01-01');
             $to = date($to . '-12-31');
 
-            $genre->load(['games' => function ($query) use ($from, $to) {
-                $query->whereBetween('release_date', [$from, $to])->get();
-            }]);
+            $genre->setRelation(
+                'games',
+                $genre->games()->whereBetween('release_date', [$from, $to])->paginate($perPage)
+            );
+        } else {
+            $genre->setRelation(
+                'games',
+                $genre->games()->paginate($perPage)
+            );
         }
 
         return view('genre.show', compact('genre'));

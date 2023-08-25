@@ -12,6 +12,7 @@ use App\Models\Genre;
 use App\Models\Publisher;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
@@ -29,6 +30,9 @@ class GameController extends Controller
      */
     public function index(Request $request): View
     {
+        $page = $request->query('page', 1);
+        $perPage = 20;
+
         if ($request->has('from') && $request->has('to')) {
             $from = $request->query('from', '1980');
             $to = $request->query('to', date('Y'));
@@ -39,13 +43,23 @@ class GameController extends Controller
             $games = Game::query()
                 ->whereBetween('release_date', [$from, $to])
                 ->orderBy('release_date', 'desc')
-                ->get();
+                ->paginate($perPage);
         } else {
-            $games = Cache::rememberForever('game-list', function () {
+            $data = Cache::rememberForever('game-list', function () {
                 return Game::query()
                     ->orderBy('release_date', 'desc')
                     ->get();
             });
+
+            $games = new LengthAwarePaginator(
+                $data->forPage($page, $perPage),
+                $data->count(),
+                $perPage,
+                $page,
+                [
+                    'path' => $request->url(),
+                ]
+            );
         }
 
         return view('game.index', compact('games'));

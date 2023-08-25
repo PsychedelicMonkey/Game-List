@@ -31,6 +31,8 @@
             </a>
         @endforeach
     </div>
+
+    {{ $games->appends($_GET)->links() }}
 @else
     <h3>{{ __('No games found') }}</h3>
 @endif
