@@ -20,25 +20,25 @@
             <x-input.main
                 type="password"
                 id="current_password"
-                label="{{ __('Current Password') }}"
+                :label="__('Current Password')"
                 :messages="$errors->updatePassword->get('current_password')"
             />
 
             <x-input.main
                 type="password"
                 id="password"
-                label="{{ __('Password') }}"
+                :label="__('Password')"
                 :messages="$errors->updatePassword->get('password')"
             />
 
             <x-input.main
                 type="password"
                 id="password_confirmation"
-                label="{{ __('Confirm Password') }}"
+                :label="__('Confirm Password')"
                 :messages="$errors->updatePassword->get('password_confirmation')"
             />
 
-            <x-button.main label="{{ __('Update Password') }}" />
+            <x-button.main :label="__('Update Password')" />
         </x-form.main>
     </header>
 </section>

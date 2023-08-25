@@ -6,9 +6,9 @@
     </div>
 
     <x-form.auth :route="route('password.email')">
-        <x-input.auth type="email" id="email" label="{{ __('Email Address') }}"/>
+        <x-input.auth type="email" id="email" :label="__('Email Address')"/>
 
-        <x-button.auth label="{{ __('Send Reset Link') }}"/>
+        <x-button.auth :label="__('Send Reset Link')"/>
     </x-form.auth>
 
     <div class="text-center mt-4">

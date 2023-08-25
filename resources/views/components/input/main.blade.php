@@ -1,14 +1,25 @@
+@props([
+    'disabled' => false,
+    'id',
+    'label',
+    'messages' => null,
+    'placeholder' => null,
+    'type' => 'text',
+    'value' => old($id),
+])
+
 <div class="flex flex-col mb-2">
     <label for="{{ $id }}" class="text-lg mb-1">
         {{ $label }}
     </label>
     <input
-        type="{{ $type ?? 'text' }}"
+        {{ $disabled ? 'disabled' : null }}
+        type="{{ $type }}"
         name="{{ $id }}"
         id="{{ $id }}"
-        value="{{ $value ?? old($id) }}"
+        value="{{ $value }}"
         class="bg-transparent rounded-lg"
-        placeholder="{{ $placeholder ?? null }}"
+        placeholder="{{ $placeholder }}"
     />
 
     @isset($messages)

@@ -11,11 +11,11 @@
         <x-input.main
             type="password"
             id="password"
-            label="{{ __('Password') }}"
-            placeholder="{{ __('Password') }}"
+            :label="__('Password')"
+            :placeholder="__('Password')"
             :messages="$errors->userDeletion->get('password')"
         />
 
-        <x-button.main color="red" label="{{ __('Delete') }}" />
+        <x-button.main color="red" :label="__('Delete')" />
     </x-form.main>
 </section>

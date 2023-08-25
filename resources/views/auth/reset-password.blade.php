@@ -8,13 +8,13 @@
     <x-form.auth :route="route('password.store')">
         <input type="hidden" name="token" value="{{ $token }}"/>
 
-        <x-input.auth type="email" id="email" label="{{ __('Email Address') }}"/>
+        <x-input.auth type="email" id="email" :label="__('Email Address')"/>
 
-        <x-input.auth type="password" id="password" label="{{ __('Password') }}"/>
+        <x-input.auth type="password" id="password" :label="__('Password')"/>
 
-        <x-input.auth type="password" id="password_confirmation" label="{{ __('Confirm Password') }}"/>
+        <x-input.auth type="password" id="password_confirmation" :label="__('Confirm Password')"/>
 
-        <x-button.auth label="{{ __('Reset Password') }}"/>
+        <x-button.auth :label="__('Reset Password')"/>
     </x-form.auth>
 
     <div class="text-center mt-4">

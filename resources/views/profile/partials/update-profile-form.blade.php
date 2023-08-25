@@ -22,9 +22,9 @@
     <x-form.main :action="route('profile.update')">
         @method('PATCH')
 
-        <x-input.main id="name" label="{{ __('Name') }}" :value="old('name', $user->name)" />
+        <x-input.main id="name" :label="__('Name')" :value="old('name', $user->name)" />
 
-        <x-input.main type="email" id="email" label="{{ __('Email Address') }}" :value="old('email', $user->email)" />
+        <x-input.main type="email" id="email" :label="__('Email Address')" :value="old('email', $user->email)" />
 
         @if($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
             <div>

@@ -11,9 +11,9 @@
 
     <x-form.auth :route="route('password.confirm')">
         <div class="mb-4">
-            <x-input.auth type="password" id="password" label="{{ __('Password') }}"/>
+            <x-input.auth type="password" id="password" :label="__('Password')"/>
         </div>
 
-        <x-button.auth label="{{ __('Confirm') }}"/>
+        <x-button.auth :label="__('Confirm')"/>
     </x-form.auth>
 </x-guest-layout>

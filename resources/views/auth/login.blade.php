@@ -7,9 +7,9 @@
 
     <x-form.auth :route="route('login')">
         <div class="mb-4">
-            <x-input.auth type="email" id="email" label="{{ __('Email Address') }}" :value="old('email')"/>
+            <x-input.auth type="email" id="email" :label="__('Email Address')" :value="old('email')"/>
 
-            <x-input.auth type="password" id="password" label="{{ __('Password') }}"/>
+            <x-input.auth type="password" id="password" :label="__('Password')"/>
 
             <div class="flex justify-between items-end">
                 <div>
@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <x-button.auth label="{{ __('Login') }}"/>
+        <x-button.auth :label="__('Login')"/>
     </x-form.auth>
 
     <div class="text-center mt-4">
