@@ -7,28 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class GameImage extends Model
+class Profile extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
     protected $fillable = [
+        'gravatar_image',
         'image',
-        'caption',
-        'file_name',
-        'original_name',
-        'mime_type',
-        'size',
-        'file_hash',
-        'game_id',
+        'bio',
     ];
 
-    protected $casts = [
-        'image' => 'array',
-    ];
-
-    public function game(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Game::class);
+        return $this->belongsTo(User::class);
     }
 }

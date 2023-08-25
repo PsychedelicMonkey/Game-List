@@ -11,7 +11,9 @@ use Spatie\Sluggable\SlugOptions;
 
 class Genre extends Model
 {
-    use HasFactory, HasSlug, SoftDeletes;
+    use HasFactory;
+    use HasSlug;
+    use SoftDeletes;
 
     protected $fillable = [
         'name',

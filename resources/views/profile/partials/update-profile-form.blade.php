@@ -1,6 +1,12 @@
 <section>
     <header>
         <h2 class="text-3xl font-semibold mb-4">{{ __('Edit Your Profile') }}</h2>
+
+        <div class="mb-3">
+            <img src="{{ $user->profile->gravatar_image }}&s=120" alt="" />
+
+            {{-- TODO: Upload image form --}}
+        </div>
     </header>
 
     @if(session('status') === 'profile-updated')
@@ -36,6 +42,8 @@
                 @endif
             </div>
         @endif
+
+        {{-- TODO: profile bio input --}}
 
         <x-button.main />
     </x-form.main>
