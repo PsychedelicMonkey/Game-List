@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="my-3">
-        <h1 class="text-3xl font-semibold underline">{{ __('Game List') }}</h1>
+        <h1 class="text-3xl font-semibold underline">{{ $title ?? __('Game List') }}</h1>
     </div>
 
     <div class="flex justify-between items-end">

@@ -4,6 +4,7 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,9 @@ Route::get('/', function () {
 
 Route::get('game-list/search', SearchController::class)
     ->name('search');
+
+Route::get('game-list/tag', TagController::class)
+    ->name('tag');
 
 Route::resource('game-list', GameController::class)->parameters([
     'game-list' => 'game',
