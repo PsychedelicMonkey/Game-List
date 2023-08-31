@@ -20,7 +20,7 @@
 @include('layouts.header')
 
 <main class="pt-14">
-    <div class="container mb-10">
+    <div class="px-4 mb-10 max-w-7xl mx-auto">
         {{ $slot }}
     </div>
 </main>
