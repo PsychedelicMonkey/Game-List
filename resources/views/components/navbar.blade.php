@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }" class="fixed w-full h-14 z-50 bg-purple-600 dark:bg-purple-800 text-white">
     <div class="max-w-7xl mx-auto h-full">
-        <div class="hidden lg:flex h-full items-center gap-4">
+        <div class="px-4 hidden lg:flex h-full items-center gap-4">
             {{-- Left side --}}
             <div class="flex gap-2">
                 <x-navbar-link :href="url('/')">{{ __('Home') }}</x-navbar-link>
@@ -52,7 +52,7 @@
         <div class="hidden lg:hidden p-4 absolute w-72 h-[calc(100vh-3.5rem)] bg-purple-600 dark:bg-purple-800" :class="{ 'block': open, 'hidden': !open }">
             <div class="h-full flex flex-col gap-1">
                 <div class="my-4 pb-3 flex justify-between items-center border-b-2 border-purple-300 dark:border-purple-400">
-                    <h3 class="text-3xl font-semibold text-center">Game List</h3>
+                    <h3 class="text-3xl font-semibold text-center">{{ __('Game List') }}</h3>
 
                     <x-theme-button />
                 </div>
