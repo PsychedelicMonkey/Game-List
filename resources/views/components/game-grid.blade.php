@@ -1,5 +1,7 @@
 @if(count($games) > 0)
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+    {{ $games->appends($_GET)->links() }}
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
         @foreach($games as $game)
             <a
                 href="{{ route('game-list.show', $game) }}"
@@ -32,7 +34,9 @@
         @endforeach
     </div>
 
-    {{ $games->appends($_GET)->links() }}
+    <div class="mt-6">
+        {{ $games->appends($_GET)->links() }}
+    </div>
 @else
     <h3>{{ __('No games found') }}</h3>
 @endif
