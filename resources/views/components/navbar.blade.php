@@ -51,7 +51,12 @@
         </div>
 
         {{-- Collapse Menu --}}
-        <div class="hidden lg:hidden p-4 absolute w-72 h-[calc(100vh-3.5rem)] bg-purple-600 dark:bg-purple-800" :class="{ 'block': open, 'hidden': !open }">
+        <div
+            x-show="open"
+            class="hidden lg:hidden p-4 absolute w-72 h-[calc(100vh-3.5rem)] bg-purple-600 dark:bg-purple-800"
+            :class="{ 'block': open, 'hidden': !open }"
+            @click.outside="open = false"
+        >
             <div class="h-full flex flex-col gap-1">
                 <div class="my-4 pb-3 flex justify-between items-center border-b-2 border-purple-300 dark:border-purple-400">
                     <h3 class="text-3xl font-semibold text-center">{{ __('Game List') }}</h3>
