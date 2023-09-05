@@ -3,6 +3,7 @@
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,8 @@ Route::resource('game-list', GameController::class)->parameters([
 Route::resource('genre', GenreController::class)->parameters([
     'genre' => 'genre:slug'
 ])->only('show');
+
+Route::resource('rating', RatingController::class)->except('show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

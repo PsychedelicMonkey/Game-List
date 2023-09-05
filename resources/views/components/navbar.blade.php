@@ -10,6 +10,8 @@
                 @can('create', \App\Models\Game::class)
                     <x-navbar-link :href="route('game-list.create')">{{ __('Create Game') }}</x-navbar-link>
                 @endcan
+
+                <x-navbar-link :href="route('rating.index')">{{ __('Ratings') }}</x-navbar-link>
             </div>
 
             {{-- Center --}}
@@ -64,6 +66,8 @@
                 @can('create', \App\Models\Game::class)
                     <x-navbar-link :href="route('game-list.create')">{{ __('Create Game') }}</x-navbar-link>
                 @endcan
+
+                <x-navbar-link :href="route('rating.index')">{{ __('Ratings') }}</x-navbar-link>
 
                 @auth
                     <x-navbar-link :href="route('profile.edit')">{{ __('Profile') }}</x-navbar-link>
