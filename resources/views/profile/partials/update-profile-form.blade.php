@@ -3,9 +3,11 @@
         <h2 class="text-3xl font-semibold mb-4">{{ __('Edit Your Profile') }}</h2>
 
         <div class="mb-3">
-            <img src="{{ $user->profile->gravatar_image }}&s=120" alt="" />
-
-            {{-- TODO: Upload image form --}}
+            @if(isset($user->profile->image))
+                <img src="{{ $user->profile->image }}" alt="" />
+            @else
+                <img src="{{ $user->profile->gravatar_image }}&s=120" alt="" />
+            @endif
         </div>
     </header>
 
@@ -25,12 +27,16 @@
         @csrf
     </form>
 
-    <x-form.main :action="route('profile.update')">
+    <x-form.main :action="route('profile.update')" enctype="multipart/form-data">
         @method('PATCH')
+
+        <x-input.main type="file" id="image" :label="__('Image')" :disabled="!$user->hasVerifiedEmail()" />
 
         <x-input.main id="name" :label="__('Name')" :value="old('name', $user->name)" />
 
         <x-input.main type="email" id="email" :label="__('Email Address')" :value="old('email', $user->email)" />
+
+        <x-input.textarea id="bio" :label="__('Bio')" :value="old('bio', $user->profile->bio)" :disabled="!$user->hasVerifiedEmail()" />
 
         @if($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
             <div>
@@ -42,8 +48,6 @@
                 @endif
             </div>
         @endif
-
-        {{-- TODO: profile bio input --}}
 
         <x-button.main />
     </x-form.main>

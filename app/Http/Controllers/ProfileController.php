@@ -7,7 +7,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -27,6 +30,33 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
+
+        // Upload image
+        if ($request->hasFile('image') && $request->user()->hasVerifiedEmail()) {
+            $file = $request->file('image');
+
+            if (!Storage::directoryExists('public/profile')) {
+                Storage::disk('public')->makeDirectory('profile');
+            }
+
+            $image = Storage::putFile('public/profile', $file);
+
+            Image::make(Storage::path($image))
+                ->fit(120, 120)
+                ->save();
+
+            $request->user()->profile->update([
+                'image' => URL::to(Storage::url($image)),
+            ]);
+        }
+
+        // Update bio
+        if ($request->user()->hasVerifiedEmail()) {
+            $profile = $request->user()->profile;
+
+            $profile->fill($request->validated());
+            $profile->save();
+        }
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

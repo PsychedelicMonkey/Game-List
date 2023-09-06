@@ -3,11 +3,12 @@
         {{ $label }}
     </label>
     <textarea
+        {{ $disabled ? 'disabled' : null }}
         name="{{ $id }}"
         id="{{ $id }}"
         cols="30"
         rows="10"
-        class="bg-transparent rounded-lg"
+        class="bg-transparent rounded-lg disabled:opacity-50"
     >
         {{ $value ?? old($id) }}
     </textarea>
