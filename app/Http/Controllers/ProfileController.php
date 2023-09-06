@@ -52,10 +52,9 @@ class ProfileController extends Controller
 
         // Update bio
         if ($request->user()->hasVerifiedEmail()) {
-            $profile = $request->user()->profile;
-
-            $profile->fill($request->validated());
-            $profile->save();
+            $request->user()->profile->update([
+                'bio' => $request->bio,
+            ]);
         }
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
