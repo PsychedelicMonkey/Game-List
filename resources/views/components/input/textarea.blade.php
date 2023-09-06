@@ -1,3 +1,10 @@
+@props([
+    'disabled' => false,
+    'id',
+    'label',
+    'value' => null,
+])
+
 <div class="flex flex-col mb-2">
     <label for="{{ $id }}" class="text-lg mb-1">
         {{ $label }}
