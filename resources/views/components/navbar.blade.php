@@ -52,10 +52,15 @@
 
         {{-- Collapse Menu --}}
         <div
+            x-cloak
             x-show="open"
-            class="hidden lg:hidden p-4 absolute w-72 h-[calc(100vh-3.5rem)] bg-purple-600 dark:bg-purple-800"
-            :class="{ 'block': open, 'hidden': !open }"
-            @click.outside="open = false"
+            class="lg:hidden p-4 absolute w-72 h-[calc(100vh-3.5rem)] bg-purple-600 dark:bg-purple-800"
+            x-transition:enter="transition ease-in-out duration-300"
+            x-transition:enter-start="opacity-0 transform scale-x-0 -translate-x-1/2"
+            x-transition:enter-end="opacity-100 transform scale-x-100 translate-x-0"
+            x-transition:leave="transition ease-in-out duration-300"
+            x-transition:leave-start="opacity-100 transform scale-x-100 translate-x-0"
+            x-transition:leave-end="opacity-0 transform scale-x-0 -translate-x-1/2"
         >
             <div class="h-full flex flex-col gap-1">
                 <div class="my-4 pb-3 flex justify-between items-center border-b-2 border-purple-300 dark:border-purple-400">
