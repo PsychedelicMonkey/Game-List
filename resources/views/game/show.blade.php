@@ -57,10 +57,10 @@
                     <h4 class="text-lg">{{ __('Tags:') }}</h4>
 
                     <ul class="flex gap-1">
-                        @foreach($game->tags->pluck('name') as $tag)
+                        @foreach($game->tags as $tag)
                             <li>
-                                <a href="{{ route('tag', 'query='.strtolower($tag)) }}" class="px-2 py-1 no-underline rounded-lg bg-gray-500 dark:bg-gray-700 hover:bg-gray-600 dark:hover:bg-gray-600 text-white">
-                                    {{ $tag }}
+                                <a href="{{ route('tag', $tag->slug) }}" class="px-2 py-1 no-underline rounded-lg bg-gray-500 dark:bg-gray-700 hover:bg-gray-600 dark:hover:bg-gray-600 text-white">
+                                    {{ $tag->name }}
                                 </a>
                             </li>
                         @endforeach

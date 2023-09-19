@@ -7,7 +7,7 @@
         <x-year-form :route="route('genre.show', $genre)"/>
     </div>
 
-    <x-genre-badges/>
+    <x-game-filter />
 
     <x-game-grid :games="$genre->games"/>
 </x-app-layout>

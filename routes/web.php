@@ -26,7 +26,7 @@ Route::get('/', function () {
 Route::get('game-list/search', SearchController::class)
     ->name('search');
 
-Route::get('game-list/tag', TagController::class)
+Route::get('game-list/tag/{slug}', TagController::class)
     ->name('tag');
 
 Route::resource('game-list', GameController::class)->parameters([

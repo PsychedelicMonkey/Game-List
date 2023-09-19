@@ -5,19 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Spatie\Tags\Tag;
 
 class TagController extends Controller
 {
-    public function __invoke(Request $request): View
+    public function __invoke(string $slug): View
     {
-        $query = $request->query('query', '');
         $perPage = 20;
 
-        $games = Game::withAnyTags($query)->paginate($perPage);
+        $games = Game::withAnyTags($slug)->paginate($perPage);
+        $tag = Tag::findFromString($slug);
 
         return view('game.index', [
             'games' => $games,
-            'title' => ucfirst($query)
+            'title' => $tag->name,
         ]);
     }
 }

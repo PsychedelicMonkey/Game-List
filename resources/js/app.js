@@ -1,11 +1,12 @@
 import './bootstrap';
 import Alpine from 'alpinejs';
+import collapse from '@alpinejs/collapse';
 
 window.Alpine = Alpine;
 
+Alpine.plugin(collapse);
 Alpine.start();
 
-import { toSystemTheme, toDarkTheme, toLightTheme } from './theme.js';
-window.toSystemTheme = toSystemTheme;
-window.toDarkTheme = toDarkTheme;
-window.toLightTheme = toLightTheme;
+window.addEventListener('DOMContentLoaded', () => {
+  import('./init');
+});
