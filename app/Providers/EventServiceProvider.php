@@ -9,11 +9,13 @@ use App\Models\Genre;
 use App\Models\User;
 use App\Observers\GameObserver;
 use App\Observers\GenreObserver;
+use App\Observers\TagObserver;
 use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use Spatie\Tags\Tag;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -34,6 +36,7 @@ class EventServiceProvider extends ServiceProvider
     protected $observers = [
         Game::class => [GameObserver::class],
         Genre::class => [GenreObserver::class],
+        Tag::class => [TagObserver::class],
         User::class => [UserObserver::class],
     ];
 
