@@ -1,4 +1,4 @@
-<div x-data="{ open: false }">
+<div x-data="{ open: false }" class="my-4">
     <div class="mt-4 px-4 py-2 bg-gray-500 dark:bg-gray-700 text-white">
         <button @click="open = !open" class="text-lg" :class="open ? 'text-purple-900 dark:text-purple-400' : 'text-white'">
             <i class="fa-solid fa-filter"></i> {{ __('Filter') }}
