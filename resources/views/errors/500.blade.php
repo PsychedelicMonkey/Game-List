@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-error-layout>
     <div class="absolute top-0 left-0 w-full h-screen flex justify-center items-center overflow-hidden">
         <div class="p-4 max-w-7xl mx-auto text-center space-y-10">
             <h1 class="text-9xl text-gray-500 font-bold">500</h1>
@@ -16,4 +16,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-error-layout>
