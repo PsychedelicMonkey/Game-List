@@ -34,12 +34,16 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-200 text-black dark:bg-gray-900 dark:text-white">
-@include('layouts.header')
+    <div class="flex flex-col justify-between h-screen">
+        @include('layouts.header')
 
-<main class="pt-14">
-    <div class="px-4 mb-10 max-w-7xl mx-auto">
-        {{ $slot }}
+        <main class="pt-14 mb-auto">
+            <div class="px-4 mb-10 max-w-7xl mx-auto">
+                {{ $slot }}
+            </div>
+        </main>
+
+        @include('layouts.footer')
     </div>
-</main>
 </body>
 </html>
