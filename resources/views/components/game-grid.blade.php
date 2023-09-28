@@ -8,21 +8,12 @@
                 class="group inline-block no-underline bg-white text-black drop-shadow-lg duration-200 rounded-lg dark:bg-gray-700 dark:text-white hover:bg-purple-600 dark:hover:bg-purple-600"
             >
                 <span class="flex flex-col">
-                    @if(array_key_exists('sm', $game->images()->first()->image))
-                        <img
-                            src="{{ $game->images()->first()->image['sm']['url'] }}"
-                            alt=""
-                            class="w-full h-52 lg:h-40 object-cover rounded-t-lg"
-                            loading="lazy"
-                        />
-                    @else
-                        <img
-                            src=""
-                            alt="screenshot"
-                            class="w-full h-52 lg:h-44 object-cover rounded-t-lg"
-                            loading="lazy"
-                        />
-                    @endif
+                    <img
+                        src="{{ $game->media->first()->getUrl('small') }}"
+                        alt="screenshot"
+                        class="w-full h-52 lg:h-44 object-cover rounded-t-lg"
+                        loading="lazy"
+                    />
 
                     <span class="flex-1 px-4 py-4 duration-200 rounded-b-lg">
                         <h3 class="text-lg font-semibold duration-200 group-hover:text-white">{{ $game->title }}</h3>

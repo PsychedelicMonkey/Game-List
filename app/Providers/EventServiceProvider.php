@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Events\GameImageCreated;
-use App\Listeners\FormatGameImage;
 use App\Models\Game;
 use App\Models\Genre;
 use App\Models\User;
@@ -27,9 +25,6 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
-        ],
-        GameImageCreated::class => [
-            FormatGameImage::class,
         ],
     ];
 

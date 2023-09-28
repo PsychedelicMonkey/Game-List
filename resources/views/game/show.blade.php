@@ -16,19 +16,11 @@
 
     <div class="flex justify-between items-start my-3">
         <div class="w-full md:w-2/3 m-auto">
-            @if(array_key_exists('lg', $game->images()->first()->image))
-                <img
-                    src="{{ $game->images()->first()->image['lg']['url'] }}"
-                    alt=""
-                    class="w-full m-auto"
-                />
-            @else
-                <img
-                    src=""
-                    alt="screenshot"
-                    class="w-full m-auto"
-                />
-            @endif
+            <img
+                src="{{ $game->media[0]->getUrl('large') }}"
+                alt="screenshot"
+                class="w-full m-auto"
+            />
 
             <div class="my-4 pb-2 border-b-2 border-purple-300">
                 <h1 class="text-3xl font-bold mb-2 lg:text-4xl">{{ $game->title }}</h1>

@@ -2,23 +2,19 @@
 
 namespace Tests\Feature\Game;
 
-use App\Events\GameImageCreated;
 use App\Models\Game;
-use App\Models\GameImage;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class GameListTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     */
     public function test_game_list_index_screen_can_be_rendered(): void
     {
         $response = $this->get('/game-list');
@@ -28,8 +24,12 @@ class GameListTest extends TestCase
 
     public function test_game_list_show_screen_can_be_rendered(): void
     {
+        Storage::fake();
+
+        $file = UploadedFile::fake()->image('image.jpg');
+
         $game = Game::factory()->create();
-        GameImage::factory()->for($game)->create();
+        $game->addMedia($file)->toMediaCollection();
 
         $response = $this->get('/game-list/' . $game->slug);
 
@@ -65,9 +65,7 @@ class GameListTest extends TestCase
 
     public function test_game_can_be_created(): void
     {
-        Event::fake([
-            GameImageCreated::class,
-        ]);
+        UploadedFile::fake();
 
         $user = User::factory()->create([
             'is_admin' => true,
@@ -84,8 +82,6 @@ class GameListTest extends TestCase
                 'image' => UploadedFile::fake()->image('img.jpg'),
                 'tags' => 'test,tags',
             ]);
-
-        Event::assertDispatched(GameImageCreated::class);
 
         $response
             ->assertSessionDoesntHaveErrors()

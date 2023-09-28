@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\GameImageCreated;
 use App\Models\Developer;
 use App\Models\Game;
 use App\Http\Requests\StoreGameRequest;
 use App\Http\Requests\UpdateGameRequest;
-use App\Models\GameImage;
 use App\Models\Genre;
 use App\Models\Publisher;
 use Illuminate\Http\RedirectResponse;
@@ -41,12 +39,14 @@ class GameController extends Controller
             $to = date($to . '-12-31');
 
             $games = Game::query()
+                ->with(['genre', 'media'])
                 ->whereBetween('release_date', [$from, $to])
                 ->orderBy('release_date', 'desc')
                 ->paginate($perPage);
         } else {
             $data = Cache::rememberForever('game-list', function () {
                 return Game::query()
+                    ->with(['genre', 'media'])
                     ->orderBy('release_date', 'desc')
                     ->get();
             });
@@ -82,28 +82,25 @@ class GameController extends Controller
 
         $file = $request->file('image');
 
+        // Format tags
         $tags = $this->formatTags($request->tags);
 
-        // Make photo directory
-        if (!Storage::directoryExists('public/photo')) {
-            Storage::disk('local')->makeDirectory('photo');
-        }
-
-        // Upload image to photo directory
-        Storage::disk('local')->put('photo', $file);
-
+        // Create or find Developer
         $developer = Developer::query()->firstOrCreate([
             'name' => $request->developer,
         ]);
 
+        // Create or find Genre
         $genre = Genre::query()->firstOrCreate([
             'name' => $request->genre,
         ]);
 
+        // Create or find Publisher
         $publisher = Publisher::query()->firstOrCreate([
             'name' => $request->publisher,
         ]);
 
+        // Create the Game
         $game = Game::query()->create([
             'title' => $request->title,
             'release_date' => $request->release_date,
@@ -120,17 +117,8 @@ class GameController extends Controller
         // Attach tags
         $game->attachTags($tags);
 
-        $game_image = GameImage::query()->create([
-            'image' => array(),
-            'file_name' => $file->hashName(),
-            'original_name' => $file->getClientOriginalName(),
-            'mime_type' => $file->getClientMimeType(),
-            'file_hash' => hash_file('sha1', $file),
-            'size' => $file->getSize(),
-            'game_id' => $game->id,
-        ]);
-
-        event(new GameImageCreated($game_image));
+        // Associate file
+        $game->addMedia($file)->toMediaCollection();
 
         return redirect()->route('game-list.index');
     }
@@ -140,6 +128,8 @@ class GameController extends Controller
      */
     public function show(Game $game): View
     {
+        $game->load(['developer', 'genre', 'media', 'publisher']);
+
         return view('game.show', compact('game'));
     }
 

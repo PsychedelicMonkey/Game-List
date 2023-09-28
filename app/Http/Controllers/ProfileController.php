@@ -32,6 +32,7 @@ class ProfileController extends Controller
         $request->user()->save();
 
         // Upload image
+        // TODO: Switch to medialibrary upload
         if ($request->hasFile('image') && $request->user()->hasVerifiedEmail()) {
             $file = $request->file('image');
 
