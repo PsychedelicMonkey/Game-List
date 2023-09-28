@@ -17,7 +17,7 @@
     <div class="flex justify-between items-start my-3">
         <div class="w-full md:w-2/3 m-auto">
             <img
-                src="{{ $game->media[0]->getUrl('large') }}"
+                src="{{ $game->media->first()->getUrl('large') }}"
                 alt="screenshot"
                 class="w-full m-auto"
             />

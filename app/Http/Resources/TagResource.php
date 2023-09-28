@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class TagResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,9 +17,9 @@ class UserResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'gravatar_image' => $this->profile->gravatar_image,
-            'image' => $this->profile->image,
-            'bio' => $this->profile->bio,
+            'slug' => $this->slug,
+            'type' => $this->type,
+            'order_item' => $this->order_item,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
