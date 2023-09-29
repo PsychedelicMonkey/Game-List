@@ -19,7 +19,7 @@ class GameController extends Controller
     public function __construct()
     {
         $this->authorizeResource(Game::class, 'game');
-        $this->middleware(['admin', 'verified'])->except(['index', 'show']);
+        $this->middleware(['verified'])->except(['index', 'show']);
     }
 
     /**
